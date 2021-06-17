@@ -12,6 +12,7 @@ about.addEventListener('click', function(e) {
         });
         // hide other articles
         articles.forEach(function(article){
+            console.log(article.classList);
             article.classList.remove('active');
         })
         const element = document.getElementById(id);
