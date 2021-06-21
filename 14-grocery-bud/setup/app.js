@@ -20,6 +20,9 @@ form.addEventListener('submit', addItem);
 // clear Items
 clearBtn.addEventListener('click', clearItems);
 
+// const deleteBtn =document.querySelector('.delete-btn');
+// console.log(deleteBtn);
+
 // ****** FUNCTIONS **********
 function addItem(e) {
     e.preventDefault();
@@ -49,6 +52,12 @@ function addItem(e) {
             <i class="fas fa-trash"></i>
           </button>
         </div>`;
+
+        const deleteBtn = element.querySelector('.delete-btn');
+        const editBtn = element.querySelector('.edit-btn');
+        deleteBtn.addEventListener('click', deleteItem);
+        editBtn.addEventListener('click', editItem);
+
         // append child
         list.appendChild(element);
         //display alert
@@ -92,8 +101,27 @@ function clearItems() {
         });
     }
     container.classList.remove("show-container");
+    displayAlert("empty list", "danger");
+    setBackToDefault();
+    //localStorage.removeItem('list');
 }
 
+// delete function
+function deleteItem(e) {
+    //console.log('item delete')
+    //console.log(e.currentTarget);
+    const element = e.currentTarget.parentElement.parentElement;
+    list.removeChild(element);
+    if(list.children.length === 0) {
+        container.classList.remove("show-container");
+    }
+    displayAlert('item removed', 'danger');
+}
+
+// edit function
+function editItem() {
+    console.log('edit item')
+}
 
 // set backto deafult
 function setBackToDefault() {
@@ -101,7 +129,7 @@ function setBackToDefault() {
     grocery.value = "";
     editFlag = false;
     editID = "";
-    submitBtn.textContent = "submit"
+    submitBtn.textContent = "submit";
 }
 
 // ****** LOCAL STORAGE **********
