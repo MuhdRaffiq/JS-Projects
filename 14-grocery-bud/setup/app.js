@@ -69,7 +69,12 @@ function addItem(e) {
         setBackToDefault();
     }
     else if (value && editFlag) {
-        console.log("editing");
+        //console.log("editing");
+        editElement.innerHTML = value;
+        displayAlert('value changed', 'success');
+        // edit local storage
+        editLocalStorage(editID, value);
+        setBackToDefault();
     }
     else {
         displayAlert("please enter value", "danger")
@@ -126,14 +131,16 @@ function editItem(e) {
     //console.log('edit item');
 
     const element = e.currentTarget.parentElement.parentElement;
+    //console.log(element);
     // set edit item
     editElement = e.currentTarget.parentElement.previousElementSibling;
-    //console.log(e.currentTarget);
+    // console.log(e.currentTarget);
     // console.log(e.currentTarget.parentElement);
-    // console.log(editElement);
+    //console.log(editElement);
 
     // set form value
-    grocery.value = editElement.innerHTML;
+    grocery.value = editElement.innerHTML;  
+    //console.log(grocery.value);
     editFlag = true;
     editID = element.dataset.id;
     submitBtn.textContent = "edit";
@@ -152,10 +159,26 @@ function setBackToDefault() {
 
 function addToLocalStorage(id, value) {
     //console.log("added to local storage");
+    const grocery = {id,value};
+    console.log(grocery);
 }
 
-function removeFromLocalStorage(id) {
+function removeFromLocalStorage(id) {}
+function editLocalStorage(id, value) {
+} 
 
-}
+// local storage API
+// set item
+// get item
+// removeItem
+//save as string
 
+
+
+// examples
+// localStorage.setItem('orange', JSON.stringify(['item', 'item 2']));
+// const oranges = JSON.parse(localStorage.getItem('orange'))
+// console.log(oranges);
+
+localStorage.removeItem('orange');
 // ****** SETUP ITEMS **********
