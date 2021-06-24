@@ -37,7 +37,7 @@ function addItem(e) {
     if(value && !editFlag)  {
         //console.log("add item to the list");
         
-        createListItems(id, value);
+        createListItem(id, value);
         //display alert
         displayAlert('item added to the list', 'success');
         // show container
@@ -166,6 +166,7 @@ function editLocalStorage(id, value) {
         }
         return item;
     })
+    localStorage.setItem("list", JSON.stringify(items));
 }
 
 function getLocalStorage() {
@@ -199,7 +200,7 @@ function setupItems() {
     }
 }
 
-function createListItems (id, value) {
+function createListItem (id, value) {
     const element = document.createElement('article');
     // add class
     element.classList.add('grocery-item');
